@@ -1,4 +1,4 @@
-const orm = require("./connection");
+const connection = require("./connection");
 
 // generate ? for each val
 const questionMarks = (num) => {
