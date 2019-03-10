@@ -46,9 +46,28 @@
           <input type="radio" name="devoured" value="0"> Not yet!
         </div>
     
-        <button type="submit">Add Burger</button>
+        <button id="submit" type="submit">Add Burger</button>
       </form>
     </div>
   </div>
 </div>
 
+<script>
+
+  $("#submit").on("click", (event) => {
+    event.preventDefault();
+
+    const newBurger = {
+      burger_name: $("#burger").val().trim(),
+      devoured: $("input[name='devoured']:checked").val()
+    };
+
+    $.ajax("/api/burger", {
+      type: "POST",
+      data: newBurger
+    }).then(() => {
+      location.reload();
+    })
+  })
+
+</script>

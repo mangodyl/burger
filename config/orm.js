@@ -40,7 +40,7 @@ const orm = {
         queryString += cols.toString();
         queryString += ") ";
         queryString += "VALUES (";
-        queryString += printQuestionMarks(vals.length);
+        queryString += questionMarks(vals.length);
         queryString += ") ";
 
         connection.query(queryString, vals, (err, result) => {
@@ -62,12 +62,5 @@ const orm = {
         });
     }
 };
-
-// selectAll()
-
-
-// insertOne()
-
-// updateOne()
 
 module.exports = orm;
