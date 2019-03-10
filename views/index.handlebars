@@ -11,7 +11,7 @@
           {{#each burger}}
             {{#unless this.devoured}}
               <li>
-                <p>{{this.burger_name}}</p>
+                <p>{{this.burger_name}} <button class="eat-burger">Devour!</button></p>
               </li>
             {{/unless}}
           {{/each}}
@@ -23,7 +23,7 @@
           {{#each burger}}
             {{#if this.devoured}}
               <li>
-                <p>{{this.burger_name}}</p>
+                <p>{{this.burger_name}} <button class="delete-burger">Delete</button></p>
               </li>
             {{/if}}
           {{/each}}
@@ -54,20 +54,32 @@
 
 <script>
 
-  $("#submit").on("click", (event) => {
-    event.preventDefault();
+  $(function () {
 
-    const newBurger = {
-      burger_name: $("#burger").val().trim(),
-      devoured: $("input[name='devoured']:checked").val()
-    };
+    {{!-- Add new burger function --}}
+    $("#submit").on("click", (event) => {
+      event.preventDefault();
 
-    $.ajax("/api/burger", {
-      type: "POST",
-      data: newBurger
-    }).then(() => {
-      location.reload();
-    })
-  })
+      const newBurger = {
+        burger_name: $("#burger").val().trim(),
+        devoured: $("input[name='devoured']:checked").val()
+      };
+
+      $.ajax("/api/burger", {
+        type: "POST",
+        data: newBurger
+      }).then(() => {
+        location.reload();
+      })
+    });
+
+    {{!-- Eat burger function --}}
+
+
+    {{!-- Delet burger function --}}
+
+  });
+
+  
 
 </script>
