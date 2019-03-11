@@ -1,7 +1,7 @@
 # Big Kahuna Logger :hamburger:
 Simple burger logger using _MySql / Node / Express / Handlebars_
 
-(https://big-kahuna-logger.herokuapp.com/)[https://big-kahuna-logger.herokuapp.com/]
+[https://big-kahuna-logger.herokuapp.com/](https://big-kahuna-logger.herokuapp.com/)
 
 ***
 
