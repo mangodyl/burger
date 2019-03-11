@@ -1,37 +1,40 @@
 
-<div class="container">
-  <h1 class="text-center">Enter the Burger...</h1>
+<div class="container text-center">
+  <h1>Enter the Burger...</h1>
+  <i class="fas fa-hamburger"></i>
 </div>
 
 <div class="container text-center">
   <div class="row">
-    <div class="col-6">
+    <div class="col-5">
       <h3>Burger Hit-List</h3>
         <ul>
           {{#each burger}}
             {{#unless this.devoured}}
               <li>
-                <p>{{this.burger_name}} <button class="eat-burger" data-id="{{this.id}}">Devour!</button></p>
+                <p>- {{this.burger_name}} <button class="eat-burger btn-success" data-id="{{this.id}}">Devour!</button></p>
               </li>
             {{/unless}}
           {{/each}}
         </ul>
     </div>
-    <div class="col-6">
+    <div class="col-2">
+    </div>
+    <div class="col-5">
       <h3>Devoured</h3>
         <ul>
           {{#each burger}}
             {{#if this.devoured}}
               <li>
-                <p>{{this.burger_name}} <button class="delete-burger" data-id="{{this.id}}">Delete</button></p>
+                <p>- {{this.burger_name}} <button class="delete-burger btn-danger" data-id="{{this.id}}">Delete</button></p>
               </li>
             {{/if}}
           {{/each}}
         </ul>
     </div>
   </div>
-  <div class="row">
-    <div class="col-12">
+  <div class="row justify-content-center">
+    <div class="col-6">
       <h3>Add to Hit-List</h3>
       <form class="create-form">
     
@@ -46,7 +49,7 @@
           <input type="radio" name="devoured" value="0"> Not yet!
         </div>
     
-        <button id="submit" type="submit">Add Burger</button>
+        <button id="submit" class="btn-primary" type="submit">Add Burger</button>
       </form>
     </div>
   </div>
@@ -78,8 +81,6 @@
 
     $(".eat-burger").on("click", function(event) {
       var id = $(this).data("id");
-      
-      console.log("firing devour, id: " + id);
 
       const eaten = { devoured: true };
       
@@ -87,12 +88,24 @@
         type: "PUT",
         data: eaten
       }).then(() => {
-        console.log("eat function");
         location.reload();
       });
     });
 
     {{!-- Delete burger function --}}
+
+    $(".delete-burger").on("click", function(event) {
+      var id = $(this).data("id");
+
+      console.log(id);
+
+      $.ajax("/api/burger/" + id, {
+        type: "DELETE"
+      }).then(() => {
+        console.log("Deleted");
+        location.reload();
+      });
+    });
 
   });
 
